@@ -1,0 +1,84 @@
+ [gd_scene load_steps=3 format=3]
+
+ [ext_resource type="Texture2D" path="res://assets/images/ui/bg.png" id="1"]
+ [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="2"]
+
+ [node name="MainMenu" type="CanvasLayer"]
+ script = ExtResource("2")
+
+ [node name="Background" type="TextureRect" parent="."]
+ anchor_right = 1.0
+ anchor_bottom = 1.0
+ texture = ExtResource("1")
+ stretch_mode = 5
+ modulate = Color(0.4, 0.4, 0.45, 0.75)
+
+ [node name="VBoxContainer" type="VBoxContainer" parent="."]
+ anchors_preset = 15
+ anchor_right = 1.0
+ anchor_bottom = 1.0
+ grow_horizontal = 2
+ grow_vertical = 2
+ size_flags_horizontal = 4
+ size_flags_vertical = 4
+
+ [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+ size_flags_horizontal = 4
+ size_flags_vertical = 3
+
+ [node name="ContentVBox" type="VBoxContainer" parent="VBoxContainer/CenterContainer"]
+ custom_minimum_size = Vector2(400, 0)
+
+ [node name="TitleLabel" type="Label" parent="VBoxContainer/CenterContainer/ContentVBox"]
+ horizontal_alignment = 1
+ vertical_alignment = 1
+ text = "失落的亚特兰大"
+ theme_override_colors/font_color = Color(1, 1, 1, 1)
+ theme_override_constants/line_spacing = 0
+ theme_override_font_sizes/font_size = 48
+ size_flags_horizontal = 4
+ size_flags_vertical = 0
+
+ [node name="SubtitleLabel" type="Label" parent="VBoxContainer/CenterContainer/ContentVBox"]
+ horizontal_alignment = 1
+ vertical_alignment = 1
+ text = "Lost Atlanta"
+ theme_override_colors/font_color = Color(0.75, 0.75, 0.75, 1)
+ theme_override_font_sizes/font_size = 22
+ size_flags_horizontal = 4
+ size_flags_vertical = 0
+
+ [node name="Spacer" type="Control" parent="VBoxContainer/CenterContainer/ContentVBox"]
+ custom_minimum_size = Vector2(0, 80)
+ size_flags_horizontal = 0
+ size_flags_vertical = 3
+
+ [node name="Buttons" type="VBoxContainer" parent="VBoxContainer/CenterContainer/ContentVBox"]
+ size_flags_horizontal = 4
+ size_flags_vertical = 0
+ theme_override_constants/separation = 20
+
+ [node name="StartButton" type="Button" parent="VBoxContainer/CenterContainer/ContentVBox/Buttons"]
+ size_flags_horizontal = 4
+ size_flags_vertical = 0
+ text = "开始新游戏"
+ theme_override_font_sizes/font_size = 20
+
+ [node name="ContinueButton" type="Button" parent="VBoxContainer/CenterContainer/ContentVBox/Buttons"]
+ size_flags_horizontal = 4
+ size_flags_vertical = 0
+ text = "继续游戏"
+ theme_override_font_sizes/font_size = 20
+ disabled = true
+
+ [node name="QuitButton" type="Button" parent="VBoxContainer/CenterContainer/ContentVBox/Buttons"]
+ size_flags_horizontal = 4
+ size_flags_vertical = 0
+ text = "退出"
+ theme_override_font_sizes/font_size = 20
+
+ [node name="ConfirmDialog" type="AcceptDialog" parent="."]
+ dialog_text = "确定要退出游戏吗？"
+ dialog_hide_on_ok = true
+ close_on_escape = true
+ size = Vector2i(320, 130)
