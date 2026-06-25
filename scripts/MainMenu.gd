@@ -1,4 +1,4 @@
-﻿extends CanvasLayer
+extends CanvasLayer
 
 @onready var title_label: Label = $VBoxContainer/CenterContainer/ContentVBox/TitleLabel
 @onready var subtitle_label: Label = $VBoxContainer/CenterContainer/ContentVBox/SubtitleLabel
@@ -9,6 +9,7 @@
 @onready var bg_texture: TextureRect = $Background
 
 func _ready() -> void:
+	PhaseManager.transition_to(PhaseManager.PHASE_MAIN_MENU)
 	start_button.pressed.connect(_on_start_pressed)
 	continue_button.pressed.connect(_on_continue_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
@@ -22,17 +23,14 @@ func _load_background() -> void:
 		bg_texture.texture = texture
 
 func _update_continue_button() -> void:
-	if SaveManager.has_save():
-		continue_button.disabled = false
-	else:
-		continue_button.disabled = true
+	continue_button.disabled = not SaveManager.has_save()
 
 func _on_start_pressed() -> void:
-	GameManager.reset()
+	GameManager.start_new_game()
 	get_tree().change_scene_to_file("res://scenes/Game.tscn")
 
 func _on_continue_pressed() -> void:
-	if SaveManager.has_save():
+	if SaveManager.has_save() and GameManager.continue_saved_game():
 		get_tree().change_scene_to_file("res://scenes/Game.tscn")
 
 func _on_quit_pressed() -> void:

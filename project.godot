@@ -17,8 +17,9 @@ config/features=PackedStringArray("4.7")
 
 [autoload]
 
-GameManager="*res://scripts/autoload/GameManager.gd"
+PhaseManager="*res://scripts/autoload/PhaseManager.gd"
 SaveManager="*res://scripts/autoload/SaveManager.gd"
+GameManager="*res://scripts/autoload/GameManager.gd"
 
 [display]
 

@@ -1,28 +1,114 @@
-﻿[gd_scene format=3]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://scripts/PlaceholderScene.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/images/ui/bg.png" id="1"]
+[ext_resource type="Script" path="res://scripts/Game.gd" id="2"]
 
 [node name="Game" type="CanvasLayer"]
-script = ExtResource("1")
+script = ExtResource("2")
 
-[node name="Placeholder" type="VBoxContainer" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("1")
+stretch_mode = 5
+modulate = Color(0.35, 0.35, 0.38, 0.8)
+
+[node name="Overlay" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.04, 0.045, 0.055, 0.68)
+
+[node name="RootMargin" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-alignment = 1
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 72
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 56
 
-[node name="Label" type="Label" parent="Placeholder"]
-horizontal_alignment = 1
-text = "游戏场景 - 敬请期待"
-theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
-theme_override_font_sizes/font_size = 24
-size_flags_horizontal = 4
-size_flags_vertical = 0
+[node name="MainVBox" type="VBoxContainer" parent="RootMargin"]
+theme_override_constants/separation = 24
 
-[node name="TipLabel" type="Label" parent="Placeholder"]
+[node name="HeaderVBox" type="VBoxContainer" parent="RootMargin/MainVBox"]
+theme_override_constants/separation = 8
+
+[node name="DayLabel" type="Label" parent="RootMargin/MainVBox/HeaderVBox"]
 horizontal_alignment = 1
-text = "按 ESC 返回主菜单"
-theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
-theme_override_font_sizes/font_size = 14
-size_flags_horizontal = 4
-size_flags_vertical = 0
+text = "第 1 天"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 38
+
+[node name="PhaseLabel" type="Label" parent="RootMargin/MainVBox/HeaderVBox"]
+horizontal_alignment = 1
+text = "白天行动"
+theme_override_colors/font_color = Color(0.78, 0.78, 0.72, 1)
+theme_override_font_sizes/font_size = 18
+
+[node name="StatsGrid" type="GridContainer" parent="RootMargin/MainVBox"]
+columns = 2
+theme_override_constants/h_separation = 18
+theme_override_constants/v_separation = 14
+
+[node name="FoodLabel" type="Label" parent="RootMargin/MainVBox/StatsGrid"]
+custom_minimum_size = Vector2(280, 42)
+text = "食物：100"
+theme_override_colors/font_color = Color(0.92, 0.9, 0.82, 1)
+theme_override_font_sizes/font_size = 22
+
+[node name="MoraleLabel" type="Label" parent="RootMargin/MainVBox/StatsGrid"]
+custom_minimum_size = Vector2(280, 42)
+text = "精神：80"
+theme_override_colors/font_color = Color(0.92, 0.9, 0.82, 1)
+theme_override_font_sizes/font_size = 22
+
+[node name="StaminaLabel" type="Label" parent="RootMargin/MainVBox/StatsGrid"]
+custom_minimum_size = Vector2(280, 42)
+text = "体力：100"
+theme_override_colors/font_color = Color(0.92, 0.9, 0.82, 1)
+theme_override_font_sizes/font_size = 22
+
+[node name="ActionPointsLabel" type="Label" parent="RootMargin/MainVBox/StatsGrid"]
+custom_minimum_size = Vector2(280, 42)
+text = "行动格：3 / 3"
+theme_override_colors/font_color = Color(0.92, 0.9, 0.82, 1)
+theme_override_font_sizes/font_size = 22
+
+[node name="StoryPanel" type="PanelContainer" parent="RootMargin/MainVBox"]
+size_flags_vertical = 3
+
+[node name="StoryLabel" type="Label" parent="RootMargin/MainVBox/StoryPanel"]
+custom_minimum_size = Vector2(0, 280)
+text = ""
+autowrap_mode = 3
+theme_override_colors/font_color = Color(0.94, 0.94, 0.9, 1)
+theme_override_font_sizes/font_size = 22
+
+[node name="ActionsVBox" type="VBoxContainer" parent="RootMargin/MainVBox"]
+theme_override_constants/separation = 14
+
+[node name="SearchButton" type="Button" parent="RootMargin/MainVBox/ActionsVBox"]
+custom_minimum_size = Vector2(0, 58)
+text = "搜索物资"
+theme_override_font_sizes/font_size = 21
+
+[node name="RestButton" type="Button" parent="RootMargin/MainVBox/ActionsVBox"]
+custom_minimum_size = Vector2(0, 58)
+text = "休息整备"
+theme_override_font_sizes/font_size = 21
+
+[node name="ExploreButton" type="Button" parent="RootMargin/MainVBox/ActionsVBox"]
+custom_minimum_size = Vector2(0, 58)
+text = "探索街区"
+theme_override_font_sizes/font_size = 21
+
+[node name="FortifyButton" type="Button" parent="RootMargin/MainVBox/ActionsVBox"]
+custom_minimum_size = Vector2(0, 58)
+text = "加固据点"
+theme_override_font_sizes/font_size = 21
+
+[node name="NextDayButton" type="Button" parent="RootMargin/MainVBox"]
+custom_minimum_size = Vector2(0, 64)
+text = "处理夜晚事件"
+theme_override_font_sizes/font_size = 22
+visible = false
