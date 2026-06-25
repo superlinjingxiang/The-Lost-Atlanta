@@ -1,11 +1,6 @@
-﻿[gd_scene load_steps=4 format=3 uid="uid://bp5emfk3f47ts"]
+﻿[gd_scene format=3 uid="uid://bp5emfk3f47ts"]
 
 [ext_resource type="Script" path="res://scripts/Intro.gd" id="1_3r1pv"]
-
-[sub_resource type="Theme" id="Theme_trsjh"]
-
-[resource]
-theme = SubResource("Theme_trsjh")
 
 [node name="Intro" type="CanvasLayer"]
 script = ExtResource("1_3r1pv")
@@ -26,7 +21,6 @@ offset_left = 30
 offset_right = -30
 offset_top = 40
 offset_bottom = 0
-theme = SubResource("Theme_trsjh")
 theme_override_font_sizes/font_size = 16
 theme_override_colors/font_color = Color(0.7, 0.7, 0.75, 1)
 horizontal_alignment = 1
@@ -43,7 +37,6 @@ offset_left = 30
 offset_right = -30
 offset_top = 0
 offset_bottom = 0
-theme = SubResource("Theme_trsjh")
 theme_override_font_sizes/font_size = 48
 theme_override_colors/font_color = Color(0.9, 0.3, 0.2, 1)
 horizontal_alignment = 1
