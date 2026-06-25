@@ -1,0 +1,54 @@
+﻿[gd_scene load_steps=4 format=3 uid="uid://bp5emfk3f47ts"]
+
+[ext_resource type="Script" path="res://scripts/Intro.gd" id="1_3r1pv"]
+
+[sub_resource type="Theme" id="Theme_trsjh"]
+
+[resource]
+theme = SubResource("Theme_trsjh")
+
+[node name="Intro" type="CanvasLayer"]
+script = ExtResource("1_3r1pv")
+
+[node name="Bg" type="ColorRect" parent="."]
+anchors_preset = 0
+offset_right = 720
+offset_bottom = 1280
+color = Color(0.05, 0.05, 0.08, 1)
+
+[node name="IntroLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.1
+anchor_right = 0.9
+anchor_top = 0.1
+anchor_bottom = 0.75
+offset_left = 30
+offset_right = -30
+offset_top = 40
+offset_bottom = 0
+theme = SubResource("Theme_trsjh")
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.7, 0.7, 0.75, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="CountdownLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.1
+anchor_right = 0.9
+anchor_top = 0.75
+anchor_bottom = 0.9
+offset_left = 30
+offset_right = -30
+offset_top = 0
+offset_bottom = 0
+theme = SubResource("Theme_trsjh")
+theme_override_font_sizes/font_size = 48
+theme_override_colors/font_color = Color(0.9, 0.3, 0.2, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountdownTimer" type="Timer" parent="."]
+wait_time = 1.0
+autostart = false

@@ -27,7 +27,7 @@ func _update_continue_button() -> void:
 
 func _on_start_pressed() -> void:
 	GameManager.start_new_game()
-	get_tree().change_scene_to_file("res://scenes/Game.tscn")
+	get_tree().change_scene_to_file("res://scenes/Intro.tscn")
 
 func _on_continue_pressed() -> void:
 	if SaveManager.has_save() and GameManager.continue_saved_game():
