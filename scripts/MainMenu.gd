@@ -18,7 +18,7 @@ func _ready() -> void:
 	_load_background()
 
 func _load_background() -> void:
-	var texture := load("res://assets/images/ui/bg.png") as Texture2D
+	var texture: Texture2D = load("res://assets/images/ui/main_menu_bg.png") as Texture2D
 	if texture:
 		bg_texture.texture = texture
 

@@ -10,7 +10,7 @@ func delete_save() -> void:
 		DirAccess.remove_absolute(SAVE_PATH)
 
 func save_game(data: Dictionary) -> bool:
-	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	var file: FileAccess = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file == null:
 		return false
 
@@ -21,11 +21,11 @@ func load_game() -> Dictionary:
 	if not has_save():
 		return {}
 
-	var file := FileAccess.open(SAVE_PATH, FileAccess.READ)
+	var file: FileAccess = FileAccess.open(SAVE_PATH, FileAccess.READ)
 	if file == null:
 		return {}
 
-	var parsed := JSON.parse_string(file.get_as_text())
+	var parsed: Variant = JSON.parse_string(file.get_as_text())
 	if typeof(parsed) != TYPE_DICTIONARY:
 		return {}
 

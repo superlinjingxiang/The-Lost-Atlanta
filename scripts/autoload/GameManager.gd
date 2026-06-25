@@ -46,17 +46,18 @@ func start_new_game() -> void:
 	state_changed.emit()
 
 func continue_saved_game() -> bool:
-	var data := SaveManager.load_game()
+	var data: Dictionary = SaveManager.load_game()
 	if data.is_empty():
 		return false
 
 	var run_state: Dictionary = data.get("run_state", {})
 	day = int(run_state.get("day", 1))
-	resources = run_state.get("resources", {
+	var saved_resources: Dictionary = run_state.get("resources", {
 		"food": 100,
 		"morale": 80,
 		"stamina": 100
 	})
+	resources = saved_resources
 	action_points = int(run_state.get("action_points", MAX_ACTION_POINTS))
 	is_game_active = true
 	last_action_id = ""
@@ -88,7 +89,7 @@ func perform_day_action(action_id: String) -> bool:
 
 	last_action_id = action_id
 	PhaseManager.transition_to(PhaseManager.PHASE_DAY_ACTION_RESOLVE, {"action_id": action_id})
-	var message := _resolve_action(action_id)
+	var message: String = _resolve_action(action_id)
 	action_points -= 1
 	action_resolved.emit(message)
 
@@ -124,6 +125,11 @@ func trigger_game_over(reason: String = "") -> void:
 
 func has_saved_game() -> bool:
 	return SaveManager.has_save()
+
+func save_current_game() -> bool:
+	if not is_game_active:
+		return false
+	return SaveManager.save_game(build_save_data())
 
 func build_save_data() -> Dictionary:
 	return {

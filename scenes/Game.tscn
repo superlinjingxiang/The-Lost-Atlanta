@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Texture2D" path="res://assets/images/ui/bg.png" id="1"]
 [ext_resource type="Script" path="res://scripts/Game.gd" id="2"]
+[ext_resource type="Texture2D" path="res://assets/images/ui/sun.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/images/ui/moon.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/images/ui/back_to_menu_icon.png" id="5"]
 
 [node name="Game" type="CanvasLayer"]
 script = ExtResource("2")
@@ -19,9 +22,11 @@ anchor_bottom = 1.0
 color = Color(0.04, 0.045, 0.055, 0.68)
 
 [node name="RootMargin" type="MarginContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -360.0
+offset_right = 360.0
 theme_override_constants/margin_left = 48
 theme_override_constants/margin_top = 72
 theme_override_constants/margin_right = 48
@@ -112,3 +117,44 @@ custom_minimum_size = Vector2(0, 64)
 text = "处理夜晚事件"
 theme_override_font_sizes/font_size = 22
 visible = false
+
+[node name="BackToMenuButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -336.0
+offset_top = 24.0
+offset_right = -280.0
+offset_bottom = 80.0
+z_index = 10
+tooltip_text = "返回主菜单"
+custom_minimum_size = Vector2(56, 56)
+icon = ExtResource("5")
+flat = true
+expand_icon = true
+
+[node name="DayNightTransition" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Dim" type="ColorRect" parent="DayNightTransition"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.55)
+
+[node name="SunIcon" type="TextureRect" parent="DayNightTransition"]
+visible = false
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MoonIcon" type="TextureRect" parent="DayNightTransition"]
+visible = false
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("4")
+expand_mode = 1
+stretch_mode = 5

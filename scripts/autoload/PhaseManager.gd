@@ -29,8 +29,8 @@ func transition_to(next_phase: String, context: Dictionary = {}) -> void:
 	if next_phase == "":
 		return
 
-	var from_phase := current_phase
-	var next_context := context.duplicate(true)
+	var from_phase: String = current_phase
+	var next_context: Dictionary = context.duplicate(true)
 
 	_run_hooks(from_phase, TIMING_BEFORE_EXIT, next_context)
 	phase_changing.emit(from_phase, next_phase, next_context)
@@ -56,7 +56,7 @@ func register_hook(
 	if not owner.has_method(method_name):
 		return
 
-	var hook_key := _get_hook_key(phase_name, timing)
+	var hook_key: String = _get_hook_key(phase_name, timing)
 	if not _hooks.has(hook_key):
 		_hooks[hook_key] = []
 
@@ -91,8 +91,8 @@ func _run_hook_key(hook_key: String, context: Dictionary) -> void:
 
 	var entries: Array = _hooks[hook_key]
 	for entry in entries:
-		var owner := entry.get("owner") as Object
-		var method_name := entry.get("method_name") as StringName
+		var owner: Object = entry.get("owner") as Object
+		var method_name: StringName = entry.get("method_name") as StringName
 		if not is_instance_valid(owner) or not owner.has_method(method_name):
 			hook_failed.emit(hook_key, owner, method_name)
 			continue
